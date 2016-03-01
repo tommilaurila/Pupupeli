@@ -12,11 +12,7 @@ public class movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector3 move = new Vector3 (
-			               Input.GetAxis ("Horizontal"),	// x-akseli
-			               0,			// y-akseli
-			               0);			// z-akseli
-
+		Vector3 move = new Vector3 (Input.GetAxis ("Horizontal"), 0, 0);
 		transform.position += move * speed * Time.deltaTime;
 	}
 }
