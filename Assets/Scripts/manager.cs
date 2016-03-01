@@ -7,6 +7,8 @@ public class manager : MonoBehaviour {
 
 	private Queue eggs = new Queue ();
 
+	private ArrayList eggList = new ArrayList();
+
 
 	void addEggsToQueue(int howMany) {
 		for (int i = 0; i < howMany; i++) {
