@@ -17,7 +17,9 @@ public class manager : MonoBehaviour {
 
 	public int points = 0;
 	public int lives = 4;
+
 	public Text pointsText;
+	public Text gameOverText;
 
 	private Queue eggs = new Queue ();
 	private ArrayList eggList = new ArrayList();
@@ -53,8 +55,11 @@ public class manager : MonoBehaviour {
 		}
 
 		// game over
-		if (lives == 0)
+		if (lives == 0) {
 			gameState = 4;
+			gameOverText.enabled = true;
+		}
+			
 	}
 
 
@@ -91,6 +96,7 @@ public class manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gameOverText.enabled = false;
 		// peli käynnissä
 		gameState = 2;
 		addLives (lives);
