@@ -6,6 +6,7 @@ public class manager : MonoBehaviour {
 
 	public GameObject egg;
 	public GameObject life;
+	public GameObject eggcup;
 
 	/* Pelin tilat
 	 * 1 = peli alkamassa
@@ -17,6 +18,7 @@ public class manager : MonoBehaviour {
 
 	public int points = 0;
 	public int lives = 4;
+	public int eggsToCatch = 3;
 
 	public Text pointsText;
 	public Text gameOverText;
@@ -30,9 +32,19 @@ public class manager : MonoBehaviour {
 		for (int i = 0; i < lifeAmount; i++) {
 			GameObject newLife = (GameObject)Instantiate (
 				                     life,
-				                     new Vector3 (2.4f, 4.5f -i/2f, 0f),
+				                     new Vector3 (2.2f, 4.5f -i/2f, 0f),
 				                     Quaternion.identity);
 			lifeList.Add (newLife);
+		}
+	}
+
+
+	void addEggcups(int amount) {
+		for (int i = 0; i < amount; i++) {
+			GameObject newEggcup = (GameObject)Instantiate (
+				                       eggcup,
+				                       new Vector3 (-3.3f +i/1.5f, -4.5f, 0.1f),
+				                       Quaternion.identity);
 		}
 	}
 
@@ -78,18 +90,21 @@ public class manager : MonoBehaviour {
 
 	void dropEgg() {
 		if (eggList.Count > 0) {
+			GameObject thisEgg = (GameObject)eggList [0];
+			thisEgg.GetComponent<Rigidbody2D> ().isKinematic = false;
+			eggList.Remove (thisEgg);
 			// käydään lista läpi ja pudotetaan ensimmäinen muna
 			// joka on pudottamatta (isKinematic = true;
-			for (int i = 0; i < eggList.Count; i++) {
-				GameObject thisEgg = (GameObject)eggList [i];
-
-				// jos vuorossa oleva muna on pudottamatta..
-				if (thisEgg.GetComponent<Rigidbody2D> ().isKinematic == true) {
-					//.. pudotetaan vuorossa oleva muna
-					thisEgg.GetComponent<Rigidbody2D> ().isKinematic = false;
-					break; // hypätään ulos for-silmukasta
-				}
-			}
+//			for (int i = 0; i < eggList.Count; i++) {
+//				GameObject thisEgg = (GameObject)eggList [i];
+//
+//				// jos vuorossa oleva muna on pudottamatta..
+//				if (thisEgg.GetComponent<Rigidbody2D> ().isKinematic == true) {
+//					//.. pudotetaan vuorossa oleva muna
+//					thisEgg.GetComponent<Rigidbody2D> ().isKinematic = false;
+//					break; // hypätään ulos for-silmukasta
+//				}
+//			}
 		}
 	}
 
@@ -101,6 +116,7 @@ public class manager : MonoBehaviour {
 		gameState = 2;
 		addLives (lives);
 		addEggsToList(6);
+		addEggcups (eggsToCatch);
 
 		InvokeRepeating ("dropEgg", 3f, 3f);
 	}

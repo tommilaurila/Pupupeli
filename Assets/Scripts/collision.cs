@@ -29,9 +29,12 @@ public class collision : MonoBehaviour {
 		} else if (coll.gameObject.CompareTag ("Player")) {
 			gameManager.GetComponent<manager> ().addPoints (1);
 			Debug.Log ("osui pelaajaan");
+
+			transform.position = new Vector3 (-3.3f, -4.1f, 0f);
+			GetComponent<Rigidbody2D> ().isKinematic = true;
 			// disabloidaan tämä muna hetken päästä
 			//Invoke("disabloiMuna", 0f);
-			gameObject.SetActive(false);
+			//gameObject.SetActive(false);
 		}
 	}
 
