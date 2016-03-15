@@ -20,7 +20,7 @@ public class manager : MonoBehaviour {
 	public int lives = 4;
 	public int eggsToCatch = 3;
 
-	public Text pointsText;
+	//public Text pointsText;
 	public Text gameOverText;
 
 	private Queue eggs = new Queue ();
@@ -29,21 +29,25 @@ public class manager : MonoBehaviour {
 
 
 	void addLives(int lifeAmount) {
-		for (int i = 0; i < lifeAmount; i++) {
+		Vector3 topLeft = Camera.main.ScreenToWorldPoint (new Vector3(0f, Camera.main.pixelHeight, 0f));
+
+		for (int i = 1; i <= lifeAmount; i++) {
 			GameObject newLife = (GameObject)Instantiate (
 				                     life,
-				                     new Vector3 (2.2f, 4.5f -i/2f, 0f),
+									 new Vector3 (topLeft.x + i/1.5f, topLeft.y -0.5f, 0f),
 				                     Quaternion.identity);
 			lifeList.Add (newLife);
+
 		}
 	}
 
 
 	void addEggcups(int amount) {
-		for (int i = 0; i < amount; i++) {
+		Vector3 bottomLeft = Camera.main.ScreenToWorldPoint (Vector3.zero);
+		for (int i = 1; i <= amount; i++) {
 			GameObject newEggcup = (GameObject)Instantiate (
 				                       eggcup,
-				                       new Vector3 (-3.3f +i/1.5f, -4.5f, 0.1f),
+									   new Vector3 (bottomLeft.x + i/1.5f, bottomLeft.y + 0.5f, 0.1f),
 				                       Quaternion.identity);
 		}
 	}
@@ -51,7 +55,7 @@ public class manager : MonoBehaviour {
 
 	public void addPoints(int pts) {
 		points += pts;
-		pointsText.text = "Pisteet: " + points;
+		//pointsText.text = "Pisteet: " + points;
 	}
 
 
@@ -76,12 +80,40 @@ public class manager : MonoBehaviour {
 
 
 	void addEggsToList(int howMany) {
+		float eggMargin = 0.7f;
+
+		Vector3 topLeft = Camera.main.ScreenToWorldPoint (new Vector3(0f, Camera.main.pixelHeight, 0f));
+		Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0f));
+
 		for (int i = 0; i < howMany; i++) {
-			float xValue = Random.Range (-2f, 2f);
+			float xValue = Random.Range (topLeft.x + eggMargin, topRight.x - eggMargin);
 
 			GameObject newEgg = (GameObject)Instantiate (egg, 
-				new Vector3 (xValue, 6, 0), 
+				new Vector3 (xValue, topLeft.y + eggMargin, 0f), 
 				Quaternion.identity); 
+
+			// vaihdetaan munalle satunnainen kuva
+			int rNumber = Random.Range(0, 4);
+
+			string eggName = "egg_b";
+
+			switch (rNumber) {
+			case 0:
+				eggName = "egg_b";
+				break;
+			case 1:
+				eggName = "egg_g";
+				break;
+			case 2:
+				eggName = "egg_r";
+				break;
+			case 3:
+				eggName = "egg_y";
+				break;				
+			}
+
+			newEgg.GetComponent<SpriteRenderer> ().sprite = 
+				Resources.Load<Sprite> (eggName);
 
 			eggList.Add (newEgg);
 		}// for
