@@ -12,12 +12,13 @@ public class manager : MonoBehaviour {
 	 * 1 = peli alkamassa
 	 * 2 = peli käynnissä
 	 * 3 = peli keskeytetty (pause)
-	 * 4 = peli loppu (game over)
+	 * 4 = peli loppu (game over, peli hävitty, elämät loppu)
+	 * 5 = peli/kenttä voitettu (munakupit täytetty)
 	 */
 	public int gameState = 1;
 
 	public int points = 0;
-	public int lives = 4;
+	public int lives = 3;
 	public int eggsToCatch = 3;
 
 	//public Text pointsText;
@@ -55,7 +56,16 @@ public class manager : MonoBehaviour {
 
 	public void addPoints(int pts) {
 		points += pts;
-		//pointsText.text = "Pisteet: " + points;
+
+		// muutetaan pelin tila voitetuksi, kun 
+		// kaikki munakupit on täyetty, eli
+		// pistemäärä on sama kuin tavoitemäärä
+		if (points >= eggsToCatch) {
+			CancelInvoke ("dropEgg");
+			gameState = 5;
+			gameOverText.text = "Voitit pelin!";
+			gameOverText.enabled = true;
+		}
 	}
 
 
@@ -72,6 +82,7 @@ public class manager : MonoBehaviour {
 
 		// game over
 		if (lives == 0) {
+			CancelInvoke ("dropEgg");
 			gameState = 4;
 			gameOverText.enabled = true;
 		}
