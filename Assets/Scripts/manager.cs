@@ -7,6 +7,7 @@ public class manager : MonoBehaviour {
 	public GameObject egg;
 	public GameObject life;
 	public GameObject eggcup;
+	public GameObject playbtn;
 
 	/* Pelin tilat
 	 * 1 = peli alkamassa
@@ -38,7 +39,6 @@ public class manager : MonoBehaviour {
 									 new Vector3 (topLeft.x + i/1.5f, topLeft.y -0.5f, 0f),
 				                     Quaternion.identity);
 			lifeList.Add (newLife);
-
 		}
 	}
 
@@ -162,11 +162,6 @@ public class manager : MonoBehaviour {
 		addEggcups (eggsToCatch);
 
 		InvokeRepeating ("dropEgg", 3f, 3f);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 
