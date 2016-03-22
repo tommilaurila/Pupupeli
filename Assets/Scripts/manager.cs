@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -7,7 +8,9 @@ public class manager : MonoBehaviour {
 	public GameObject egg;
 	public GameObject life;
 	public GameObject eggcup;
+	public GameObject player;
 	public GameObject playbtn;
+	public GameObject replaybtn;
 
 	/* Pelin tilat
 	 * 1 = peli alkamassa
@@ -28,6 +31,9 @@ public class manager : MonoBehaviour {
 	private Queue eggs = new Queue ();
 	private ArrayList eggList = new ArrayList();
 	private ArrayList lifeList = new ArrayList();
+
+
+
 
 
 	void addLives(int lifeAmount) {
@@ -65,6 +71,7 @@ public class manager : MonoBehaviour {
 			gameState = 5;
 			gameOverText.text = "Voitit pelin!";
 			gameOverText.enabled = true;
+			replaybtn.SetActive (true);
 		}
 	}
 
@@ -85,6 +92,7 @@ public class manager : MonoBehaviour {
 			CancelInvoke ("dropEgg");
 			gameState = 4;
 			gameOverText.enabled = true;
+			replaybtn.SetActive (true);
 		}
 			
 	}
@@ -155,6 +163,9 @@ public class manager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gameOverText.enabled = false;
+
+		replaybtn.SetActive (false);
+
 		// peli käynnissä
 		gameState = 2;
 		addLives (lives);
@@ -164,5 +175,9 @@ public class manager : MonoBehaviour {
 		InvokeRepeating ("dropEgg", 3f, 3f);
 	}
 
+
+	public void RestartLevel() {
+		SceneManager.LoadScene (0);
+	}
 
 }

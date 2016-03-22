@@ -5,6 +5,19 @@ public class movement : MonoBehaviour {
 
 	public float speed = 1.0f;
 	public GameObject gameManager;
+	public Sprite[] playerSprites = new Sprite[3];
+
+
+	/*
+	 * 0 = paikallaan
+	 * 1 = vasemmalle 
+	 * 2 = oikealle
+	 */
+	void Awake() {
+		playerSprites = Resources.LoadAll<Sprite> ("bunnysheet339x128");
+		// player.GetComponent<SpriteRenderer> ().sprite = playerSprites [1];
+	}
+
 
 	// Use this for initialization
 	void Start () {
@@ -24,5 +37,10 @@ public class movement : MonoBehaviour {
 				transform.position = new Vector3 (fingerPos.x, transform.position.y, transform.position.z);
 			}
 		}//if gamestate = 2
+	}
+
+
+	void LateUpdate() {
+		//TODO: tänne pelaajakuvan vaihtaminen kun suunta vaihtuu
 	}
 }
