@@ -17,6 +17,12 @@ public class movement : MonoBehaviour {
 		if (gameManager.GetComponent<manager> ().gameState == 2) {
 			Vector3 move = new Vector3 (Input.GetAxis ("Horizontal"), 0, 0);
 			transform.position += move * speed * Time.deltaTime;
-		}
+
+			// kosketusohjaus x-suunnassa
+			if (Input.touchCount > 0) {
+				Vector3 fingerPos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+				transform.position = new Vector3 (fingerPos.x, transform.position.y, transform.position.z);
+			}
+		}//if gamestate = 2
 	}
 }
