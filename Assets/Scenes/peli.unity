@@ -41,7 +41,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -120,6 +120,8 @@ MonoBehaviour:
   playbtn: {fileID: 0}
   replaybtn: {fileID: 1904390789}
   pinecone: {fileID: 172182, guid: 00ee6a15b530f0e40a8052342cae84ec, type: 2}
+  star: {fileID: 156212, guid: 0be7d9dda5988234381d53aaa021fca6, type: 2}
+  starSprites: []
   gameState: 0
   points: 0
   lives: 3

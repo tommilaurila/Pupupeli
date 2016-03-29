@@ -13,6 +13,8 @@ public class manager : MonoBehaviour {
 	public GameObject playbtn;
 	public GameObject replaybtn;
 	public GameObject pinecone;
+	public GameObject star;
+	public Sprite[] starSprites = new Sprite[2];
 
 	/* Pelin tilat
 	 * 1 = peli alkamassa
@@ -38,6 +40,8 @@ public class manager : MonoBehaviour {
 
 	private ArrayList objectsList = new ArrayList();
 
+	private ArrayList starsList = new ArrayList();
+
 
 	public void addBonusLife() {
 		if (lives < 3) {
@@ -54,6 +58,25 @@ public class manager : MonoBehaviour {
 			int r = Random.Range (i, list.Count);
 			list [i] = list [r];
 			list [r] = go;
+		}
+	}
+
+
+	void giveStars(int howMany) {
+		Vector3 centerScreen = Camera.main.ScreenToWorldPoint (new Vector3(Camera.main.pixelWidth/2, Camera.main.pixelHeight/2, 0f));
+
+		for (float i = -1.5f; i <= 1.5f; i += 1.5f) {
+			GameObject newStar = (GameObject)Instantiate (
+				star,
+				new Vector3 (centerScreen.x +i, centerScreen.y + 1f, 0f),
+				Quaternion.identity);
+
+			starsList.Add (newStar);
+		}
+
+		for (int i=0; i<howMany; i++) {
+			GameObject go = (GameObject)starsList [i];
+			go.GetComponent<SpriteRenderer> ().sprite = starSprites [1];
 		}
 	}
 
@@ -93,6 +116,9 @@ public class manager : MonoBehaviour {
 			CancelInvoke ("dropObject");
 			gameState = 5;
 			gameOverText.text = "Voitit pelin!";
+
+			giveStars (lives);
+
 			gameOverText.enabled = true;
 			replaybtn.SetActive (true);
 		}
@@ -198,33 +224,6 @@ public class manager : MonoBehaviour {
 	}
 
 
-	void dropEgg() {
-		if (eggList.Count > 0) {
-			GameObject thisEgg = (GameObject)eggList [0];
-			thisEgg.GetComponent<Rigidbody2D> ().isKinematic = false;
-			eggList.Remove (thisEgg);
-		}
-	}
-
-
-	void dropCone() {
-		if (coneList.Count > 0) {
-			GameObject thisCone = (GameObject)coneList [0];
-			thisCone.GetComponent<Rigidbody2D> ().isKinematic = false;
-			coneList.Remove (thisCone);
-		}
-	}
-
-
-	void dropBonus() {
-		if (bonusLifeList.Count > 0) {
-			GameObject thisBonus = (GameObject)bonusLifeList [0];
-			thisBonus.GetComponent<Rigidbody2D> ().isKinematic = false;
-			bonusLifeList.Remove (thisBonus);
-		}
-	}
-
-
 	void dropObject() {
 		if (objectsList.Count > 0) {
 			GameObject thisObject = (GameObject)objectsList [0];
@@ -239,6 +238,8 @@ public class manager : MonoBehaviour {
 
 		replaybtn.SetActive (false);
 
+		starSprites = Resources.LoadAll<Sprite> ("stars");
+
 		// peli käynnissä
 		gameState = 2;
 		addLives (lives);
@@ -250,10 +251,6 @@ public class manager : MonoBehaviour {
 
 		reshuffle (objectsList);
 		InvokeRepeating ("dropObject", 3f, 3f);
-
-//		InvokeRepeating ("dropEgg", 3f, 3f);
-//		InvokeRepeating ("dropCone", 4.5f, 4.5f);
-//		InvokeRepeating ("dropBonus", 6f, 6f);
 	}
 
 
