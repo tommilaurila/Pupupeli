@@ -1,12 +1,13 @@
 fileFormatVersion: 2
-guid: bb56954ffede55e478de0b2ce5ac3444
-timeCreated: 1458642211
+guid: 3d1cfdfd420f1954792eed34973bfd53
+timeCreated: 1459235951
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: bunnysheet339x128_0
-    21300002: bunnysheet339x128_1
-    21300004: bunnysheet339x128_2
+    21300000: bunnysheet452x128_0
+    21300002: bunnysheet452x128_1
+    21300004: bunnysheet452x128_2
+    21300006: bunnysheet452x128_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -32,7 +33,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -53,7 +54,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: bunnysheet339x128_0
+    - name: bunnysheet452x128_0
       rect:
         serializedVersion: 2
         x: 0
@@ -71,7 +72,7 @@ TextureImporter:
         - {x: 56.5, y: -54}
         - {x: 56.5, y: -10}
         - {x: 29.5, y: 64}
-    - name: bunnysheet339x128_1
+    - name: bunnysheet452x128_1
       rect:
         serializedVersion: 2
         x: 113
@@ -91,7 +92,7 @@ TextureImporter:
         - {x: 56.5, y: -60}
         - {x: 56.5, y: -21}
         - {x: 19.5, y: 64}
-    - name: bunnysheet339x128_2
+    - name: bunnysheet452x128_2
       rect:
         serializedVersion: 2
         x: 226
@@ -109,6 +110,24 @@ TextureImporter:
         - {x: 55.5, y: -52}
         - {x: 55.5, y: 0}
         - {x: 14.5, y: 64}
+    - name: bunnysheet452x128_3
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 0
+        width: 113
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46.5, y: 64}
+        - {x: -56.5, y: 45}
+        - {x: -56.5, y: -64}
+        - {x: 44.5, y: -64}
+        - {x: 56.5, y: -54}
+        - {x: 56.5, y: -10}
+        - {x: 29.5, y: 64}
     outline: []
   spritePackingTag: 
   userData: 

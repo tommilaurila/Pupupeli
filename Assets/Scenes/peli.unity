@@ -113,12 +113,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   egg: {fileID: 101194, guid: 351bd3b54d480b84c909e7d66cbf2f41, type: 2}
+  bonuslife: {fileID: 196058, guid: 8ea1db7a4f37063408da8268b6fc4a1c, type: 2}
   life: {fileID: 177448, guid: a6baa963e33d6fa499bef923dd6cdbb2, type: 2}
   eggcup: {fileID: 131868, guid: da2e73653784af34bb0ae2b854d8b793, type: 2}
   player: {fileID: 1786517157}
   playbtn: {fileID: 0}
   replaybtn: {fileID: 1904390789}
-  playerSprites: []
+  pinecone: {fileID: 172182, guid: 00ee6a15b530f0e40a8052342cae84ec, type: 2}
   gameState: 0
   points: 0
   lives: 3
@@ -1233,6 +1234,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   gameManager: {fileID: 0}
+  playerSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passOutTime: 1
 --- !u!61 &1786517161
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,11 +6,13 @@ using System.Collections;
 public class manager : MonoBehaviour {
 
 	public GameObject egg;
+	public GameObject bonuslife;
 	public GameObject life;
 	public GameObject eggcup;
 	public GameObject player;
 	public GameObject playbtn;
 	public GameObject replaybtn;
+	public GameObject pinecone;
 
 	/* Pelin tilat
 	 * 1 = peli alkamassa
@@ -28,12 +30,32 @@ public class manager : MonoBehaviour {
 	//public Text pointsText;
 	public Text gameOverText;
 
-	private Queue eggs = new Queue ();
-	private ArrayList eggList = new ArrayList();
 	private ArrayList lifeList = new ArrayList();
 
+	private ArrayList eggList = new ArrayList();
+	private ArrayList coneList = new ArrayList();
+	private ArrayList bonusLifeList = new ArrayList();
+
+	private ArrayList objectsList = new ArrayList();
 
 
+	public void addBonusLife() {
+		if (lives < 3) {
+			GameObject thisLife = (GameObject)lifeList [lives];
+			thisLife.SetActive (true);
+			lives++;
+		}
+	}
+
+
+	void reshuffle(ArrayList list) {
+		for (int i = 0; i < list.Count; i++) {
+			GameObject go = (GameObject)list [i];
+			int r = Random.Range (i, list.Count);
+			list [i] = list [r];
+			list [r] = go;
+		}
+	}
 
 
 	void addLives(int lifeAmount) {
@@ -44,6 +66,7 @@ public class manager : MonoBehaviour {
 				                     life,
 									 new Vector3 (topLeft.x + i/1.5f, topLeft.y -0.5f, 0f),
 				                     Quaternion.identity);
+			newLife.layer = 5; //UI-taso
 			lifeList.Add (newLife);
 		}
 	}
@@ -67,7 +90,7 @@ public class manager : MonoBehaviour {
 		// kaikki munakupit on täyetty, eli
 		// pistemäärä on sama kuin tavoitemäärä
 		if (points >= eggsToCatch) {
-			CancelInvoke ("dropEgg");
+			CancelInvoke ("dropObject");
 			gameState = 5;
 			gameOverText.text = "Voitit pelin!";
 			gameOverText.enabled = true;
@@ -89,12 +112,48 @@ public class manager : MonoBehaviour {
 
 		// game over
 		if (lives == 0) {
-			CancelInvoke ("dropEgg");
+			CancelInvoke ("dropObject");
 			gameState = 4;
 			gameOverText.enabled = true;
 			replaybtn.SetActive (true);
 		}
 			
+	}
+
+
+	void addConesToList(int howMany) {
+		float coneMargin = 0.7f;
+
+		Vector3 topLeft = Camera.main.ScreenToWorldPoint (new Vector3(0f, Camera.main.pixelHeight, 0f));
+		Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0f));
+
+		for (int i = 0; i < howMany; i++) {
+			float xValue = Random.Range (topLeft.x + coneMargin, topRight.x - coneMargin);
+
+			GameObject newCone = (GameObject)Instantiate (pinecone, 
+				new Vector3 (xValue, topLeft.y + coneMargin, 0f), 
+				Quaternion.identity); 
+
+			objectsList.Add (newCone);
+		}// for
+	}
+
+
+	void addBonusLivesToList(int howMany) {
+		float bonusMargin = 0.7f;
+
+		Vector3 topLeft = Camera.main.ScreenToWorldPoint (new Vector3(0f, Camera.main.pixelHeight, 0f));
+		Vector3 topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, 0f));
+
+		for (int i = 0; i < howMany; i++) {
+			float xValue = Random.Range (topLeft.x + bonusMargin, topRight.x - bonusMargin);
+
+			GameObject newBonus = (GameObject)Instantiate (bonuslife, 
+				new Vector3 (xValue, topLeft.y + bonusMargin, 0f), 
+				Quaternion.identity); 
+
+			objectsList.Add (newBonus);
+		}// for
 	}
 
 
@@ -134,7 +193,7 @@ public class manager : MonoBehaviour {
 			newEgg.GetComponent<SpriteRenderer> ().sprite = 
 				Resources.Load<Sprite> (eggName);
 
-			eggList.Add (newEgg);
+			objectsList.Add (newEgg);
 		}// for
 	}
 
@@ -144,21 +203,35 @@ public class manager : MonoBehaviour {
 			GameObject thisEgg = (GameObject)eggList [0];
 			thisEgg.GetComponent<Rigidbody2D> ().isKinematic = false;
 			eggList.Remove (thisEgg);
-			// käydään lista läpi ja pudotetaan ensimmäinen muna
-			// joka on pudottamatta (isKinematic = true;
-//			for (int i = 0; i < eggList.Count; i++) {
-//				GameObject thisEgg = (GameObject)eggList [i];
-//
-//				// jos vuorossa oleva muna on pudottamatta..
-//				if (thisEgg.GetComponent<Rigidbody2D> ().isKinematic == true) {
-//					//.. pudotetaan vuorossa oleva muna
-//					thisEgg.GetComponent<Rigidbody2D> ().isKinematic = false;
-//					break; // hypätään ulos for-silmukasta
-//				}
-//			}
 		}
 	}
 
+
+	void dropCone() {
+		if (coneList.Count > 0) {
+			GameObject thisCone = (GameObject)coneList [0];
+			thisCone.GetComponent<Rigidbody2D> ().isKinematic = false;
+			coneList.Remove (thisCone);
+		}
+	}
+
+
+	void dropBonus() {
+		if (bonusLifeList.Count > 0) {
+			GameObject thisBonus = (GameObject)bonusLifeList [0];
+			thisBonus.GetComponent<Rigidbody2D> ().isKinematic = false;
+			bonusLifeList.Remove (thisBonus);
+		}
+	}
+
+
+	void dropObject() {
+		if (objectsList.Count > 0) {
+			GameObject thisObject = (GameObject)objectsList [0];
+			thisObject.GetComponent<Rigidbody2D> ().isKinematic = false;
+			objectsList.Remove (thisObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -172,7 +245,15 @@ public class manager : MonoBehaviour {
 		addEggsToList(6);
 		addEggcups (eggsToCatch);
 
-		InvokeRepeating ("dropEgg", 3f, 3f);
+		addConesToList (3);
+		addBonusLivesToList (2);
+
+		reshuffle (objectsList);
+		InvokeRepeating ("dropObject", 3f, 3f);
+
+//		InvokeRepeating ("dropEgg", 3f, 3f);
+//		InvokeRepeating ("dropCone", 4.5f, 4.5f);
+//		InvokeRepeating ("dropBonus", 6f, 6f);
 	}
 
 
