@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f6e1782d9f944734c8bf9dbddd9f20d7
+timeCreated: 1459851726
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - egg: {fileID: 101194, guid: 351bd3b54d480b84c909e7d66cbf2f41, type: 2}
+  - bonuslife: {fileID: 196058, guid: 8ea1db7a4f37063408da8268b6fc4a1c, type: 2}
+  - life: {fileID: 177448, guid: a6baa963e33d6fa499bef923dd6cdbb2, type: 2}
+  - eggcup: {fileID: 131868, guid: da2e73653784af34bb0ae2b854d8b793, type: 2}
+  - player: {instanceID: 0}
+  - playbtn: {instanceID: 0}
+  - replaybtn: {instanceID: 0}
+  - pinecone: {instanceID: 0}
+  - star: {instanceID: 0}
+  - starsText: {instanceID: 0}
+  - gameOverText: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

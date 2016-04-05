@@ -3,15 +3,16 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class manager : MonoBehaviour {
+public class taso01manager : MonoBehaviour {
 
 	public GameObject egg;
 	public GameObject bonuslife;
 	public GameObject life;
 	public GameObject eggcup;
 	public GameObject player;
-	public GameObject playbtn;
 	public GameObject replaybtn;
+	public GameObject menubtn;
+	public GameObject nextbtn;
 	public GameObject pinecone;
 	public GameObject star;
 	public Text starsText;
@@ -32,11 +33,7 @@ public class manager : MonoBehaviour {
 
 	private int collected_stars = 0;
 
-	//public Text pointsText;
-	public Text gameOverText;
-
 	private ArrayList lifeList = new ArrayList();
-
 	private ArrayList eggList = new ArrayList();
 	private ArrayList coneList = new ArrayList();
 	private ArrayList bonusLifeList = new ArrayList();
@@ -115,10 +112,10 @@ public class manager : MonoBehaviour {
 		// muutetaan pelin tila voitetuksi, kun 
 		// kaikki munakupit on täyetty, eli
 		// pistemäärä on sama kuin tavoitemäärä
+		// PELIN VOITTAMINEN
 		if (points >= eggsToCatch) {
 			CancelInvoke ("dropObject");
 			gameState = 5;
-			gameOverText.text = "Voitit pelin!";
 
 			giveStars (lives);
 
@@ -126,8 +123,9 @@ public class manager : MonoBehaviour {
 			starsText.text = collected_stars.ToString ();
 			saveStars ();
 
-			gameOverText.enabled = true;
 			replaybtn.SetActive (true);
+			menubtn.SetActive (true);
+			nextbtn.SetActive (true);
 		}
 	}
 
@@ -143,12 +141,12 @@ public class manager : MonoBehaviour {
 				lives = 0;
 		}
 
-		// game over
+		// GAME OVER
 		if (lives == 0) {
 			CancelInvoke ("dropObject");
 			gameState = 4;
-			gameOverText.enabled = true;
 			replaybtn.SetActive (true);
+			menubtn.SetActive (true);
 		}
 			
 	}
@@ -241,9 +239,9 @@ public class manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameOverText.enabled = false;
-
 		replaybtn.SetActive (false);
+		menubtn.SetActive (false);
+		nextbtn.SetActive (false);
 
 		starSprites = Resources.LoadAll<Sprite> ("stars");
 
@@ -279,8 +277,11 @@ public class manager : MonoBehaviour {
 	}
 
 
-	public void RestartLevel() {
-		SceneManager.LoadScene (0);
+	public void StartLevel(int level) {
+		SceneManager.LoadScene (level);
 	}
+
+
+
 
 }

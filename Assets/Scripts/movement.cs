@@ -25,14 +25,14 @@ public class movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameManager = GameObject.Find ("GameManager");
+		gameManager = GameObject.Find ("Taso01Manager");
 		oldPos = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// pupua voi liikutella vain pelitilassa 2 (=käynnissä)
-		if (gameManager.GetComponent<manager> ().gameState == 2 && Time.time > hitConeTime + passOutTime) {
+		if (gameManager.GetComponent<taso01manager> ().gameState == 2 && Time.time > hitConeTime + passOutTime) {
 			Vector3 move = new Vector3 (Input.GetAxis ("Horizontal"), 0, 0);
 			transform.position += move * speed * Time.deltaTime;
 
@@ -64,7 +64,7 @@ public class movement : MonoBehaviour {
 			coll.gameObject.SetActive (false);
 		} else if (coll.gameObject.CompareTag ("bonuslife")) {
 			// osuttiin lisäelämään
-			gameManager.GetComponent<manager>().addBonusLife();
+			gameManager.GetComponent<taso01manager>().addBonusLife();
 			Debug.Log("osui elämään");
 			coll.gameObject.SetActive (false);
 		}

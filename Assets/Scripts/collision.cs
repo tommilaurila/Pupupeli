@@ -10,7 +10,7 @@ public class collision : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		gameManager = GameObject.Find ("GameManager");
+		gameManager = GameObject.Find ("Taso01Manager");
 		audios = GetComponents<AudioSource>();
 	}
 	
@@ -27,7 +27,7 @@ public class collision : MonoBehaviour {
 		if (coll.gameObject.CompareTag ("Ground")) {
 			audios [1].Play ();
 
-			gameManager.GetComponent<manager> ().decreaseLife (1);
+			gameManager.GetComponent<taso01manager> ().decreaseLife (1);
 			Debug.Log ("osui maahan");
 			// disabloidaan tämä muna hetken päästä
 			//Invoke("disabloiMuna", 0f);
@@ -38,11 +38,11 @@ public class collision : MonoBehaviour {
 			
 			audios [0].Play();
 
-			gameManager.GetComponent<manager> ().addPoints (1);
+			gameManager.GetComponent<taso01manager> ().addPoints (1);
 
 			// kysytään pelaajan pistemäärä, jotta osataan laittaa
 			// muna oikeaan kuppiin
-			int playerPoints = gameManager.GetComponent<manager>().points;
+			int playerPoints = gameManager.GetComponent<taso01manager>().points;
 
 			Vector3 bottomLeft = Camera.main.ScreenToWorldPoint (Vector3.zero);
 			transform.position = new Vector3 (bottomLeft.x + playerPoints / 1.5f, bottomLeft.y + 1f, 0.2f);
