@@ -14,6 +14,7 @@ public class manager : MonoBehaviour {
 	public GameObject replaybtn;
 	public GameObject pinecone;
 	public GameObject star;
+	public Text starsText;
 	public Sprite[] starSprites = new Sprite[2];
 
 	/* Pelin tilat
@@ -28,6 +29,8 @@ public class manager : MonoBehaviour {
 	public int points = 0;
 	public int lives = 3;
 	public int eggsToCatch = 3;
+
+	private int collected_stars = 0;
 
 	//public Text pointsText;
 	public Text gameOverText;
@@ -118,6 +121,10 @@ public class manager : MonoBehaviour {
 			gameOverText.text = "Voitit pelin!";
 
 			giveStars (lives);
+
+			collected_stars += lives;
+			starsText.text = collected_stars.ToString ();
+			saveStars ();
 
 			gameOverText.enabled = true;
 			replaybtn.SetActive (true);
@@ -240,6 +247,9 @@ public class manager : MonoBehaviour {
 
 		starSprites = Resources.LoadAll<Sprite> ("stars");
 
+		// luetaan ennestään kerätyt tähdet muistista
+		readStars ();
+
 		// peli käynnissä
 		gameState = 2;
 		addLives (lives);
@@ -251,6 +261,21 @@ public class manager : MonoBehaviour {
 
 		reshuffle (objectsList);
 		InvokeRepeating ("dropObject", 3f, 3f);
+	}
+
+
+	void readStars() {
+		// luetaan jo kerätyt tähdet muistista
+		if (PlayerPrefs.HasKey ("collected_stars")) {
+			collected_stars = PlayerPrefs.GetInt ("collected_stars");
+
+			starsText.text = collected_stars.ToString();
+		}
+	}
+
+
+	void saveStars() {
+		PlayerPrefs.SetInt ("collected_stars", collected_stars);
 	}
 
 
