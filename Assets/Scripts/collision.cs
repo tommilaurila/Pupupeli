@@ -21,23 +21,20 @@ public class collision : MonoBehaviour {
 
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		
-
 		// jos muna törmäsi maahan
 		if (coll.gameObject.CompareTag ("Ground")) {
 			audios [1].Play ();
 
 			gameManager.GetComponent<taso01manager> ().decreaseLife (1);
-			Debug.Log ("osui maahan");
+			Debug.Log ("osui maahan " + audios[1].clip.name);
 			// disabloidaan tämä muna hetken päästä
 			//Invoke("disabloiMuna", 0f);
 			gameObject.SetActive(false);
 
 			// jos muna törmäsi pelaajaan (pelaaja sai munan kiinni)
-		} else if (coll.gameObject.CompareTag ("Player")) {
-			
+		} else if (coll.gameObject.CompareTag ("Player")) {			
 			audios [0].Play();
-
+			Debug.Log ("osui pelaajaan " + audios[0].clip.name);
 			gameManager.GetComponent<taso01manager> ().addPoints (1);
 
 			// kysytään pelaajan pistemäärä, jotta osataan laittaa

@@ -224,6 +224,10 @@ public class taso01manager : MonoBehaviour {
 			newEgg.GetComponent<SpriteRenderer> ().sprite = 
 				Resources.Load<Sprite> (eggName);
 
+			AudioSource[] audios = newEgg.GetComponents<AudioSource>();
+			audios [0].clip = (AudioClip)Resources.Load ("Powerup8");
+			audios [1].clip = (AudioClip)Resources.Load ("Explosion10");
+
 			objectsList.Add (newEgg);
 		}// for
 	}
