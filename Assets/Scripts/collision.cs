@@ -4,14 +4,17 @@ using System.Collections;
 public class collision : MonoBehaviour {
 
 	public GameObject gameManager;
-	public AudioClip powerup;
-	public AudioClip explosion;
-	AudioSource[] audios;
+
+	AudioSource[] audioSources = new AudioSource[2];
+	AudioSource asPowerup;
+	AudioSource asExplosion;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = GameObject.Find ("Taso01Manager");
-		audios = GetComponents<AudioSource>();
+		audioSources = GetComponents<AudioSource>();
+		asPowerup = audioSources [0];
+		asExplosion = audioSources [1];
 	}
 	
 	// Update is called once per frame
@@ -23,18 +26,18 @@ public class collision : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll) {
 		// jos muna törmäsi maahan
 		if (coll.gameObject.CompareTag ("Ground")) {
-			audios [1].Play ();
+			
 
 			gameManager.GetComponent<taso01manager> ().decreaseLife (1);
-			Debug.Log ("osui maahan " + audios[1].clip.name);
-			// disabloidaan tämä muna hetken päästä
-			//Invoke("disabloiMuna", 0f);
+			asExplosion.Play ();
+			Debug.Log ("osui maahan ");
 			gameObject.SetActive(false);
 
 			// jos muna törmäsi pelaajaan (pelaaja sai munan kiinni)
-		} else if (coll.gameObject.CompareTag ("Player")) {			
-			audios [0].Play();
-			Debug.Log ("osui pelaajaan " + audios[0].clip.name);
+		} else if (coll.gameObject.CompareTag ("Player")) {
+			asPowerup.Play ();
+
+			Debug.Log ("osui pelaajaan ");
 			gameManager.GetComponent<taso01manager> ().addPoints (1);
 
 			// kysytään pelaajan pistemäärä, jotta osataan laittaa
@@ -48,8 +51,4 @@ public class collision : MonoBehaviour {
 		}
 	}
 
-
-	void disabloiMuna() {
-		gameObject.SetActive(false);
-	}
 }

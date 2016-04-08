@@ -224,9 +224,9 @@ public class taso01manager : MonoBehaviour {
 			newEgg.GetComponent<SpriteRenderer> ().sprite = 
 				Resources.Load<Sprite> (eggName);
 
-			AudioSource[] audios = newEgg.GetComponents<AudioSource>();
-			audios [0].clip = (AudioClip)Resources.Load ("Powerup8");
-			audios [1].clip = (AudioClip)Resources.Load ("Explosion10");
+//			AudioSource[] audios = newEgg.GetComponents<AudioSource>();
+//			audios [0].clip = (AudioClip)Resources.Load ("Powerup8");
+//			audios [1].clip = (AudioClip)Resources.Load ("Explosion10");
 
 			objectsList.Add (newEgg);
 		}// for
@@ -237,6 +237,7 @@ public class taso01manager : MonoBehaviour {
 		if (objectsList.Count > 0) {
 			GameObject thisObject = (GameObject)objectsList [0];
 			thisObject.GetComponent<Rigidbody2D> ().isKinematic = false;
+			thisObject.GetComponent<BoxCollider2D> ().enabled = true;
 			objectsList.Remove (thisObject);
 		}
 	}
