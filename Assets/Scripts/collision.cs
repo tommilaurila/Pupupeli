@@ -4,17 +4,13 @@ using System.Collections;
 public class collision : MonoBehaviour {
 
 	public GameObject gameManager;
-
-	AudioSource[] audioSources = new AudioSource[2];
-	AudioSource asPowerup;
-	AudioSource asExplosion;
+	AudioSource[] audios = new AudioSource[2];
+	public bool isEatable = true;
 
 	// Use this for initialization
 	void Start () {
 		gameManager = GameObject.Find ("Taso01Manager");
-		audioSources = GetComponents<AudioSource>();
-		asPowerup = audioSources [0];
-		asExplosion = audioSources [1];
+		audios = GetComponents<AudioSource> ();
 	}
 	
 	// Update is called once per frame
@@ -26,16 +22,16 @@ public class collision : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll) {
 		// jos muna törmäsi maahan
 		if (coll.gameObject.CompareTag ("Ground")) {
-			
+			isEatable = false;
 
 			gameManager.GetComponent<taso01manager> ().decreaseLife (1);
-			asExplosion.Play ();
-			Debug.Log ("osui maahan ");
-			gameObject.SetActive(false);
+			audios[1].Play ();
+
+			Invoke ("disableEgg", 0.2f);
 
 			// jos muna törmäsi pelaajaan (pelaaja sai munan kiinni)
-		} else if (coll.gameObject.CompareTag ("Player")) {
-			asPowerup.Play ();
+		} else if (coll.gameObject.CompareTag ("Player") && isEatable) {
+			audios[0].Play ();
 
 			Debug.Log ("osui pelaajaan ");
 			gameManager.GetComponent<taso01manager> ().addPoints (1);
@@ -49,6 +45,11 @@ public class collision : MonoBehaviour {
 
 			GetComponent<Rigidbody2D> ().isKinematic = true;
 		}
+	}
+
+
+	void disableEgg() {
+		this.gameObject.SetActive (false);
 	}
 
 }
