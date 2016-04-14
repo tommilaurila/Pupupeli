@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 2f6ba0a90b26a1e4793b8b47718366b5
+timeCreated: 1460632611
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: balloons3x73x256_0
+    21300002: balloons3x73x256_1
+    21300004: balloons3x73x256_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: balloons3x73x256_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 73
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.5, y: 128}
+        - {x: -36.5, y: -128}
+        - {x: -22.5, y: -128}
+        - {x: 36.5, y: -71}
+        - {x: 36.5, y: 128}
+    - name: balloons3x73x256_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 73
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.5, y: 128}
+        - {x: -36.5, y: -128}
+        - {x: -22.5, y: -128}
+        - {x: 36.5, y: -71}
+        - {x: 36.5, y: 128}
+      - - {x: 24.5, y: -45}
+        - {x: 21.5, y: -49}
+        - {x: 21.5, y: -52}
+        - {x: 23.5, y: -53}
+        - {x: 36.5, y: -53}
+        - {x: 36.5, y: -48}
+        - {x: 35.5, y: -47}
+      - - {x: 7.5, y: -52}
+        - {x: 10.5, y: -51}
+        - {x: 10.5, y: -48}
+        - {x: 7.5, y: -47}
+        - {x: 5.5, y: -49}
+    - name: balloons3x73x256_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 0
+        width: 73
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -36.5, y: 128}
+        - {x: -36.5, y: -128}
+        - {x: -22.5, y: -128}
+        - {x: 36.5, y: -71}
+        - {x: 36.5, y: 128}
+      - - {x: -36.5, y: -48}
+        - {x: -36.5, y: -53}
+        - {x: -33.5, y: -54}
+        - {x: -30.5, y: -54}
+        - {x: -29.5, y: -52}
+        - {x: -29.5, y: -50}
+        - {x: -32.5, y: -47}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

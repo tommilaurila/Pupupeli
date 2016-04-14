@@ -27,6 +27,9 @@ public class taso01manager : MonoBehaviour {
 	 */
 	public int gameState = 1;
 
+	// gameManager
+	GameManager gm = GameManager.instance;
+
 	public int points = 0;
 	public int lives = 3;
 	public int eggsToCatch = 3;
@@ -115,7 +118,9 @@ public class taso01manager : MonoBehaviour {
 		// PELIN VOITTAMINEN
 		if (points >= eggsToCatch) {
 			CancelInvoke ("dropObject");
-			gameState = 5;
+
+			gm.gameState = 5;
+			//gameState = 5;
 
 			giveStars (lives);
 
@@ -144,7 +149,8 @@ public class taso01manager : MonoBehaviour {
 		// GAME OVER
 		if (lives == 0) {
 			CancelInvoke ("dropObject");
-			gameState = 4;
+			gm.gameState = 4;
+			//gameState = 4;
 			replaybtn.SetActive (true);
 			menubtn.SetActive (true);
 		}
@@ -240,6 +246,7 @@ public class taso01manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		replaybtn.SetActive (false);
 		menubtn.SetActive (false);
 		nextbtn.SetActive (false);
@@ -250,7 +257,8 @@ public class taso01manager : MonoBehaviour {
 		readStars ();
 
 		// peli käynnissä
-		gameState = 2;
+		//gameState = 2;
+		gm.gameState = 2;
 		addLives (lives);
 		addEggsToList(6);
 		addEggcups (eggsToCatch);

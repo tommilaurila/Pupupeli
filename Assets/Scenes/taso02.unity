@@ -96,7 +96,7 @@ GameObject:
   - 114: {fileID: 37001397}
   - 82: {fileID: 37001399}
   m_Layer: 0
-  m_Name: Taso01Manager
+  m_Name: Taso02Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,23 +110,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 37001396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6e1782d9f944734c8bf9dbddd9f20d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0116d75e3949fd54f871b22ee3231c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  egg: {fileID: 101194, guid: 351bd3b54d480b84c909e7d66cbf2f41, type: 2}
-  bonuslife: {fileID: 196058, guid: 8ea1db7a4f37063408da8268b6fc4a1c, type: 2}
-  life: {fileID: 177448, guid: a6baa963e33d6fa499bef923dd6cdbb2, type: 2}
-  eggcup: {fileID: 131868, guid: da2e73653784af34bb0ae2b854d8b793, type: 2}
-  player: {fileID: 1786517157}
-  replaybtn: {fileID: 1904390789}
-  menubtn: {fileID: 2051862425}
-  nextbtn: {fileID: 1792190632}
-  pinecone: {fileID: 172182, guid: 00ee6a15b530f0e40a8052342cae84ec, type: 2}
-  star: {fileID: 156212, guid: 0be7d9dda5988234381d53aaa021fca6, type: 2}
-  starsText: {fileID: 416977501}
-  starSprites: []
-  gameState: 0
-  gm: {fileID: 134184, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
+  egg: {fileID: 0}
+  bonuslife: {fileID: 0}
+  life: {fileID: 0}
+  eggcup: {fileID: 0}
+  player: {fileID: 0}
+  replaybtn: {fileID: 0}
+  menubtn: {fileID: 0}
+  nextbtn: {fileID: 0}
+  pinecone: {fileID: 0}
+  star: {fileID: 0}
+  starsText: {fileID: 0}
+  starSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  gameState: 1
   points: 0
   lives: 3
   eggsToCatch: 3
@@ -1328,7 +1329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   gameManager: {fileID: 37001396}
-  gm: {fileID: 11456934, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
   playerSprites:
   - {fileID: 0}
   - {fileID: 0}
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 37001397}
+      - m_Target: {fileID: 0}
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -1749,7 +1749,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 37001397}
+      - m_Target: {fileID: 0}
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
@@ -1927,7 +1927,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 37001397}
+      - m_Target: {fileID: 0}
         m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
