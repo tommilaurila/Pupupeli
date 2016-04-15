@@ -4,8 +4,8 @@ using System.Collections;
 public class movement : MonoBehaviour {
 
 	public float speed = 1.0f;
-	//public GameObject gameManager;
-	GameManager GM;
+	public SimpleGameManager GM;
+
 	public Sprite[] playerSprites = new Sprite[4];
 	public float passOutTime = 1f;
 	private float hitConeTime = 0f;
@@ -26,22 +26,13 @@ public class movement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//gameManager = GameObject.Find ("Taso01Manager");
-		//GM = GameManager.instance;
-		GM = GameManager.instance;
-
-		if (GM == null) {
-			Debug.Log ("gm on null");
-			Instantiate (GM);
-		}
-
 		oldPos = transform.position;
 	}
 
 	// Update is called once per frame
 	void Update () {
 		// pupua voi liikutella vain pelitilassa 2 (=käynnissä)
-		if ( /*GM.gameState == 2 && */ Time.time > hitConeTime + passOutTime) {
+		if ( GM.gameState == GameState.GAME && Time.time > hitConeTime + passOutTime) {
 			Vector3 move = new Vector3 (Input.GetAxis ("Horizontal"), 0, 0);
 			transform.position += move * speed * Time.deltaTime;
 
