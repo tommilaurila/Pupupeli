@@ -9,6 +9,7 @@ public class Loader : MonoBehaviour {
 		// jos GameManager-oliota ei ole olemassa..
 		if (GameManager.instance == null)
 			//.. luodaan uusi sellainen
+			Debug.Log("instantioitiin GM");
 			Instantiate (gameManager);
 	}
 
