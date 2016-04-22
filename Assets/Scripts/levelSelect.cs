@@ -3,29 +3,28 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class LevelSelect : MonoBehaviour {
+public class levelSelect : MonoBehaviour {
 
 	public Text starsText;
-	SimpleGameManager GM;
-
-	void Awake () {
-		GM = SimpleGameManager.Instance;
-		GM.OnStateChange += HandleOnStateChange;
-	}
-
-	public void HandleOnStateChange ()
-	{
-		Debug.Log("OnStateChange!");
-	}
 
 	// Use this for initialization
 	void Start () {
-		starsText.text = GM.collected_stars.ToString ();
+		readStars ();
+	}
+
+
+	void readStars() {
+		// luetaan jo kerätyt tähdet muistista
+		if (PlayerPrefs.HasKey ("collected_stars")) {
+			int collected_stars = PlayerPrefs.GetInt ("collected_stars");
+
+			starsText.text = collected_stars.ToString ();
+		} else
+			starsText.text = "0";
 	}
 
 
 	public void StartLevel(int level) {
-		GM.StartLevel (level);
+		SceneManager.LoadScene (level);
 	}
 }
-

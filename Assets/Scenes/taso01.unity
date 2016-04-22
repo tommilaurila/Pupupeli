@@ -126,7 +126,7 @@ MonoBehaviour:
   starsText: {fileID: 416977501}
   starSprites: []
   gameState: 0
-  GM: {fileID: 0}
+  gm: {fileID: 134184, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
   points: 0
   lives: 3
   eggsToCatch: 3
@@ -1327,7 +1327,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  GM: {fileID: 134184, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
+  gameManager: {fileID: 37001396}
+  gm: {fileID: 11456934, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
   playerSprites:
   - {fileID: 0}
   - {fileID: 0}

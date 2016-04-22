@@ -28,17 +28,23 @@ public class taso01manager : MonoBehaviour {
 	public int gameState = 1;
 
 	// gameManager
-	SimpleGameManager GM;
+	GameManager gm = GameManager.instance;
 
 	public int points = 0;
-	int lives = 3;
-	int eggsToCatch;
+	public int lives = 3;
+	public int eggsToCatch = 3;
 
 	private int collected_stars = 0;
 
 	private ArrayList lifeList = new ArrayList();
+	private ArrayList eggList = new ArrayList();
+	private ArrayList coneList = new ArrayList();
+	private ArrayList bonusLifeList = new ArrayList();
+
 	private ArrayList objectsList = new ArrayList();
+
 	private ArrayList starsList = new ArrayList();
+
 
 	public void addBonusLife() {
 		if (lives < 3) {
@@ -113,7 +119,7 @@ public class taso01manager : MonoBehaviour {
 		if (points >= eggsToCatch) {
 			CancelInvoke ("dropObject");
 
-			//gm.gameState = 5;
+			gm.gameState = 5;
 			//gameState = 5;
 
 			giveStars (lives);
@@ -143,7 +149,7 @@ public class taso01manager : MonoBehaviour {
 		// GAME OVER
 		if (lives == 0) {
 			CancelInvoke ("dropObject");
-			//gm.gameState = 4;
+			gm.gameState = 4;
 			//gameState = 4;
 			replaybtn.SetActive (true);
 			menubtn.SetActive (true);
@@ -238,22 +244,8 @@ public class taso01manager : MonoBehaviour {
 		}
 	}
 
-
-	void Awake () {
-		GM = SimpleGameManager.Instance;
-		GM.OnStateChange += HandleOnStateChange;
-	}
-
-	public void HandleOnStateChange ()
-	{
-		Debug.Log("OnStateChange!");
-	}
-
-
 	// Use this for initialization
 	void Start () {
-		eggsToCatch = GM.eggs;
-		Debug.Log ("etc " + GM.eggs);
 
 		replaybtn.SetActive (false);
 		menubtn.SetActive (false);
@@ -266,9 +258,9 @@ public class taso01manager : MonoBehaviour {
 
 		// peli käynnissä
 		//gameState = 2;
-		//gm.gameState = 2;
+		gm.gameState = 2;
 		addLives (lives);
-		addEggsToList(eggsToCatch * 2);
+		addEggsToList(6);
 		addEggcups (eggsToCatch);
 
 		addConesToList (3);
@@ -292,6 +284,13 @@ public class taso01manager : MonoBehaviour {
 	void saveStars() {
 		PlayerPrefs.SetInt ("collected_stars", collected_stars);
 	}
+
+
+	public void StartLevel(int level) {
+		SceneManager.LoadScene (level);
+	}
+
+
 
 
 }
