@@ -4,14 +4,24 @@ using System.Collections;
 
 public class Intro : MonoBehaviour {
 
-	public SimpleGameManager GM;
+	SimpleGameManager GM;
 
-
-	void Start () {
-		GM.SetGameState(GameState.MAIN_MENU);
-		LoadLevel ();
+	void Awake () {
+		GM = SimpleGameManager.Instance;
+		GM.OnStateChange += HandleOnStateChange;
+		Debug.Log("Current game state when Awakes: " + GM.gameState);
 	}
 
+	void Start () {
+		Debug.Log("Current game state when Starts: " + GM.gameState);
+		GM.SetGameState(GameState.MAIN_MENU);
+	}
+
+	public void HandleOnStateChange ()
+	{
+		Debug.Log("Handling state change to: " + GM.gameState);
+		Invoke("LoadLevel", 2f);
+	}
 
 	public void LoadLevel(){
 		Debug.Log("Invoking LoadLevel");

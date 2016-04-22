@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour
 	 */
 	public int gameState;
 
-	int difficulty;
-	public int Difficulty { 
-		get{return difficulty;} 
+	int eggs;
+	public int Eggs { 
+		get{return eggs;} 
 		private set{}
 	
 	}
@@ -53,12 +53,12 @@ public class GameManager : MonoBehaviour
 			SceneManager.LoadScene (0);
 			break;
 		case 1:
-			difficulty = 3;
+			eggs = 3;
 			Debug.Log ("level 1");
 			SceneManager.LoadScene (1);
 			break;
 		case 2:
-			difficulty = 4;
+			eggs = 4;
 			SceneManager.LoadScene (1);
 			break;
 		default:

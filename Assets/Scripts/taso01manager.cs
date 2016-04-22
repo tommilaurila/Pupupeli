@@ -18,8 +18,17 @@ public class taso01manager : MonoBehaviour {
 	public Text starsText;
 	public Sprite[] starSprites = new Sprite[2];
 
+	/* Pelin tilat
+	 * 1 = peli alkamassa
+	 * 2 = peli käynnissä
+	 * 3 = peli keskeytetty (pause)
+	 * 4 = peli loppu (game over, peli hävitty, elämät loppu)
+	 * 5 = peli/kenttä voitettu (munakupit täytetty)
+	 */
+	public int gameState = 1;
+
 	// gameManager
-	public SimpleGameManager GM;
+	SimpleGameManager GM;
 
 	public int points = 0;
 	int lives = 3;
@@ -30,35 +39,6 @@ public class taso01manager : MonoBehaviour {
 	private ArrayList lifeList = new ArrayList();
 	private ArrayList objectsList = new ArrayList();
 	private ArrayList starsList = new ArrayList();
-
-
-	// Use this for initialization
-	void Start () {
-		GM.SetGameState (GameState.GAME);
-		eggsToCatch = GM.difficulty;
-		Debug.Log ("etc " + GM.difficulty);
-		Debug.Log ("GS " + GM.gameState);
-
-		replaybtn.SetActive (false);
-		menubtn.SetActive (false);
-		nextbtn.SetActive (false);
-
-		starSprites = Resources.LoadAll<Sprite> ("stars");
-
-		// luetaan ennestään kerätyt tähdet muistista
-		readStars ();
-
-		addLives (lives);
-		addEggsToList(eggsToCatch * 2);
-		addEggcups (eggsToCatch);
-
-		addConesToList (eggsToCatch/3);
-		addBonusLivesToList (eggsToCatch/4);
-
-		reshuffle (objectsList);
-		InvokeRepeating ("dropObject", 3f, 3f);
-	}
-
 
 	public void addBonusLife() {
 		if (lives < 3) {
@@ -115,10 +95,10 @@ public class taso01manager : MonoBehaviour {
 	void addEggcups(int amount) {
 		Vector3 bottomLeft = Camera.main.ScreenToWorldPoint (Vector3.zero);
 		for (int i = 1; i <= amount; i++) {
-			Instantiate (
-                       eggcup,
-					   new Vector3 (bottomLeft.x + i/1.5f, bottomLeft.y + 0.5f, 0.1f),
-                       Quaternion.identity);
+			GameObject newEggcup = (GameObject)Instantiate (
+				                       eggcup,
+									   new Vector3 (bottomLeft.x + i/1.5f, bottomLeft.y + 0.5f, 0.1f),
+				                       Quaternion.identity);
 		}
 	}
 
@@ -140,7 +120,7 @@ public class taso01manager : MonoBehaviour {
 
 			collected_stars += lives;
 			starsText.text = collected_stars.ToString ();
-			saveStars (lives);
+			saveStars ();
 
 			replaybtn.SetActive (true);
 			menubtn.SetActive (true);
@@ -259,14 +239,58 @@ public class taso01manager : MonoBehaviour {
 	}
 
 
-	void readStars() {
-		collected_stars = GM.collected_stars;
-		starsText.text = collected_stars.ToString();
+	void Awake () {
+		GM = SimpleGameManager.Instance;
+		GM.OnStateChange += HandleOnStateChange;
+	}
+
+	public void HandleOnStateChange ()
+	{
+		Debug.Log("OnStateChange!");
 	}
 
 
-	void saveStars(int howMany) {
-		GM.addStars (howMany);
+	// Use this for initialization
+	void Start () {
+		eggsToCatch = GM.eggs;
+		Debug.Log ("etc " + GM.eggs);
+
+		replaybtn.SetActive (false);
+		menubtn.SetActive (false);
+		nextbtn.SetActive (false);
+
+		starSprites = Resources.LoadAll<Sprite> ("stars");
+
+		// luetaan ennestään kerätyt tähdet muistista
+		readStars ();
+
+		// peli käynnissä
+		//gameState = 2;
+		//gm.gameState = 2;
+		addLives (lives);
+		addEggsToList(eggsToCatch * 2);
+		addEggcups (eggsToCatch);
+
+		addConesToList (3);
+		addBonusLivesToList (2);
+
+		reshuffle (objectsList);
+		InvokeRepeating ("dropObject", 3f, 3f);
+	}
+
+
+	void readStars() {
+		// luetaan jo kerätyt tähdet muistista
+		if (PlayerPrefs.HasKey ("collected_stars")) {
+			collected_stars = PlayerPrefs.GetInt ("collected_stars");
+
+			starsText.text = collected_stars.ToString();
+		}
+	}
+
+
+	void saveStars() {
+		PlayerPrefs.SetInt ("collected_stars", collected_stars);
 	}
 
 

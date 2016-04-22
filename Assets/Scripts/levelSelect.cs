@@ -6,8 +6,17 @@ using System.Collections;
 public class LevelSelect : MonoBehaviour {
 
 	public Text starsText;
-	public SimpleGameManager GM;
+	SimpleGameManager GM;
 
+	void Awake () {
+		GM = SimpleGameManager.Instance;
+		GM.OnStateChange += HandleOnStateChange;
+	}
+
+	public void HandleOnStateChange ()
+	{
+		Debug.Log("OnStateChange!");
+	}
 
 	// Use this for initialization
 	void Start () {
