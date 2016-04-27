@@ -2,10 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
-// tietokanta
-using Mono.Data.Sqlite; 
-using System.Data; 
-using System;
+
 
 
 public class levelSelect : MonoBehaviour {
@@ -36,31 +33,7 @@ public class levelSelect : MonoBehaviour {
 
 
 	void readDB() {
-		string conn = "URI=file:" + Application.dataPath + "/Pupukanta.s3db"; //Path to database.
-		Debug.Log("polku " + conn);
 
-		IDbConnection dbconn;
-		dbconn = (IDbConnection) new SqliteConnection(conn);
-		dbconn.Open(); //Open connection to the database.
-		if(dbconn == null) Debug.Log("yhteyttä ei ole");
-		IDbCommand dbcmd = dbconn.CreateCommand();
-		if (dbcmd == null)
-			Debug.Log ("komentoa ei ole");
-		string sqlQuery = "SELECT hyvis FROM Tasot";
-		dbcmd.CommandText = sqlQuery;
-		IDataReader reader = dbcmd.ExecuteReader();
-		while (reader.Read())
-		{
-			int value = reader.GetInt32(0);
-
-			Debug.Log( "value= "+value);
-		}
-		reader.Close();
-		reader = null;
-		dbcmd.Dispose();
-		dbcmd = null;
-		dbconn.Close();
-		dbconn = null;
 	}
 
 }
