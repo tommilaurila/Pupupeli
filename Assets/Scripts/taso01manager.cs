@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class taso01manager : MonoBehaviour {
 
@@ -44,6 +45,34 @@ public class taso01manager : MonoBehaviour {
 	private ArrayList objectsList = new ArrayList();
 
 	private ArrayList starsList = new ArrayList();
+
+	private Taso taso;
+	private GameObject hyvis;
+
+	void Awake() {
+		loadTaso ();
+	}
+
+	void loadTaso() {
+		DataService ds = new DataService ("puputietokanta.db");
+		taso = ds.GetTaso (2);
+		Debug.Log("Ladattiin taso " + taso.ToString());
+		string hyvisNimi = "Prefabs/";
+
+		switch (taso.Id) {
+		case 1:
+			hyvisNimi += "egg";
+			break;
+		case 2:
+			hyvisNimi += "snowflake";
+			break;
+		default:
+			break;
+		}
+
+		Debug.Log ("hyvisnimi on " + hyvisNimi);
+		hyvis = (GameObject)Resources.Load (hyvisNimi, typeof(GameObject));
+	}
 
 
 	public void addBonusLife() {
@@ -203,34 +232,38 @@ public class taso01manager : MonoBehaviour {
 		for (int i = 0; i < howMany; i++) {
 			float xValue = Random.Range (topLeft.x + eggMargin, topRight.x - eggMargin);
 
-			GameObject newEgg = (GameObject)Instantiate (egg, 
+//			GameObject newEgg = (GameObject)Instantiate (egg, 
+//				new Vector3 (xValue, topLeft.y + eggMargin, 0f), 
+//				Quaternion.identity); 
+
+			GameObject newHyvis = (GameObject)Instantiate (hyvis, 
 				new Vector3 (xValue, topLeft.y + eggMargin, 0f), 
 				Quaternion.identity); 
 
-			// vaihdetaan munalle satunnainen kuva
-			int rNumber = Random.Range(0, 4);
+//			// vaihdetaan munalle satunnainen kuva
+//			int rNumber = Random.Range(0, 4);
+//
+//			string eggName = "egg_b";
+//
+//			switch (rNumber) {
+//			case 0:
+//				eggName = "egg_b";
+//				break;
+//			case 1:
+//				eggName = "egg_g";
+//				break;
+//			case 2:
+//				eggName = "egg_r";
+//				break;
+//			case 3:
+//				eggName = "egg_y";
+//				break;				
+//			}
+//
+//			newHyvis.GetComponent<SpriteRenderer> ().sprite = 
+//				Resources.Load<Sprite> (eggName);
 
-			string eggName = "egg_b";
-
-			switch (rNumber) {
-			case 0:
-				eggName = "egg_b";
-				break;
-			case 1:
-				eggName = "egg_g";
-				break;
-			case 2:
-				eggName = "egg_r";
-				break;
-			case 3:
-				eggName = "egg_y";
-				break;				
-			}
-
-			newEgg.GetComponent<SpriteRenderer> ().sprite = 
-				Resources.Load<Sprite> (eggName);
-
-			objectsList.Add (newEgg);
+			objectsList.Add (newHyvis);
 		}// for
 	}
 

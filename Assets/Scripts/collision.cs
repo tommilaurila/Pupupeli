@@ -25,13 +25,13 @@ public class collision : MonoBehaviour {
 			isEatable = false;
 
 			gameManager.GetComponent<taso01manager> ().decreaseLife (1);
-			audios[1].Play ();
+			if(audios.Length > 1) audios[1].Play ();
 
 			Invoke ("disableEgg", 0.2f);
 
 			// jos muna törmäsi pelaajaan (pelaaja sai munan kiinni)
 		} else if (coll.gameObject.CompareTag ("Player") && isEatable) {
-			audios[0].Play ();
+			if(audios.Length > 0) audios[0].Play ();
 
 			Debug.Log ("osui pelaajaan ");
 			gameManager.GetComponent<taso01manager> ().addPoints (1);

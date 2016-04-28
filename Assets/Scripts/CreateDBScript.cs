@@ -8,7 +8,7 @@ public class CreateDBScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartSync();
+		//StartSync();
 	}
 
     private void StartSync()

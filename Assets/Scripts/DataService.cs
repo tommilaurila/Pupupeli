@@ -149,6 +149,10 @@ public class DataService  {
 		});
 	}
 
+	public Taso GetTaso(int nro) {
+		return _connection.Table<Taso> ().Where (x => x.Id == nro).FirstOrDefault();
+	}
+
 	public IEnumerable<Person> GetPersons(){
 		return _connection.Table<Person>();
 	}
