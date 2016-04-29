@@ -117,41 +117,26 @@ public class DataService  {
 	}
 
 
-	public void CreateDB(){
-		_connection.DropTable<Person> ();
-		_connection.CreateTable<Person> ();
-
-		_connection.InsertAll (new[]{
-			new Person{
-				Id = 1,
-				Name = "Tom",
-				Surname = "Perez",
-				Age = 56
-			},
-			new Person{
-				Id = 2,
-				Name = "Fred",
-				Surname = "Arthurson",
-				Age = 16
-			},
-			new Person{
-				Id = 3,
-				Name = "John",
-				Surname = "Doe",
-				Age = 25
-			},
-			new Person{
-				Id = 4,
-				Name = "Roberto",
-				Surname = "Huertas",
-				Age = 37
-			}
-		});
-	}
-
 	public Taso GetTaso(int nro) {
-		return _connection.Table<Taso> ().Where (x => x.Id == nro).FirstOrDefault();
+		return _connection.Table<Taso> ().Where (x => x.Id == nro).First();
 	}
+
+	//TODO: tähtiä lisäytyy aivan liikaa!!
+	public int addTotalStars(int stars) {
+		Asetukset oldSettings = _connection.Table<Asetukset> ().First();
+
+		oldSettings.Tahtisaldo += stars;
+		// palauttaa muutettujen rivien lukumäärän
+		return _connection.Update(oldSettings);
+	}
+
+
+	public int getTotalStars() {
+		Asetukset a = _connection.Table<Asetukset> ().Where (x => x.Id == 1).First();
+		Debug.Log ("Tähtisaldo on " + a.ToString());
+		return a.Tahtisaldo;		
+	}
+
 
 	public IEnumerable<Person> GetPersons(){
 		return _connection.Table<Person>();

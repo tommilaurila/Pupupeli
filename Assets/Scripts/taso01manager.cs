@@ -155,7 +155,8 @@ public class taso01manager : MonoBehaviour {
 
 			collected_stars += lives;
 			starsText.text = collected_stars.ToString ();
-			saveStars ();
+			//saveStars ();
+			gm.addTotalStars(collected_stars);
 
 			replaybtn.SetActive (true);
 			menubtn.SetActive (true);
@@ -305,12 +306,15 @@ public class taso01manager : MonoBehaviour {
 
 
 	void readStars() {
-		// luetaan jo kerätyt tähdet muistista
-		if (PlayerPrefs.HasKey ("collected_stars")) {
-			collected_stars = PlayerPrefs.GetInt ("collected_stars");
+		collected_stars = gm.getTotalStars ();
+		starsText.text = collected_stars.ToString();
 
-			starsText.text = collected_stars.ToString();
-		}
+		// luetaan jo kerätyt tähdet muistista
+//		if (PlayerPrefs.HasKey ("collected_stars")) {
+//			collected_stars = PlayerPrefs.GetInt ("collected_stars");
+//
+//			starsText.text = collected_stars.ToString();
+//		}
 	}
 
 

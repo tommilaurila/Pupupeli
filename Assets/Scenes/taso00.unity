@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starsText: {fileID: 416977501}
+  gm: {fileID: 11456934, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
 --- !u!4 &37001398
 Transform:
   m_ObjectHideFlags: 0
