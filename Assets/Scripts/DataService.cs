@@ -137,7 +137,7 @@ public class DataService  {
 		return a.Tahtisaldo;		
 	}
 
-
+/*
 	public IEnumerable<Person> GetPersons(){
 		return _connection.Table<Person>();
 	}
@@ -159,4 +159,5 @@ public class DataService  {
 		_connection.Insert (p);
 		return p;
 	}
+*/
 }

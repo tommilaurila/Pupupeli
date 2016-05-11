@@ -38,9 +38,9 @@ public class taso01manager : MonoBehaviour {
 	private int collected_stars = 0;
 
 	private ArrayList lifeList = new ArrayList();
-	private ArrayList eggList = new ArrayList();
-	private ArrayList coneList = new ArrayList();
-	private ArrayList bonusLifeList = new ArrayList();
+	//private ArrayList eggList = new ArrayList();
+	//private ArrayList coneList = new ArrayList();
+	//private ArrayList bonusLifeList = new ArrayList();
 
 	private ArrayList objectsList = new ArrayList();
 
@@ -156,7 +156,7 @@ public class taso01manager : MonoBehaviour {
 			collected_stars += lives;
 			starsText.text = collected_stars.ToString ();
 			//saveStars ();
-			gm.addTotalStars(collected_stars);
+			gm.addTotalStars(lives);
 
 			replaybtn.SetActive (true);
 			menubtn.SetActive (true);

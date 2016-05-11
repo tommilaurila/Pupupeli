@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class ExistingDBScript : MonoBehaviour {
-
+/*
 	public Text DebugText;
 
 	// Use this for initialization
@@ -34,5 +34,5 @@ public class ExistingDBScript : MonoBehaviour {
 		DebugText.text += System.Environment.NewLine + msg;
 		Debug.Log (msg);
 	}
-
+*/
 }

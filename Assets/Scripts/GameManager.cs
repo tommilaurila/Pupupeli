@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
     
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
 	DataService ds = new DataService ("puputietokanta.db");
 
 	public int gameState;
+
+	int currentLevel;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -39,6 +42,17 @@ public class GameManager : MonoBehaviour
 
 	public int getTotalStars() {
 		return ds.getTotalStars ();
+	}
+
+
+	public int getCurrentLevel() {
+		return currentLevel;
+	}
+
+
+	public void StartLevel(int level) {
+		currentLevel = level;
+		SceneManager.LoadScene (level);
 	}
 
 
