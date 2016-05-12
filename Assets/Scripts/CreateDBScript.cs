@@ -15,7 +15,7 @@ public class CreateDBScript : MonoBehaviour {
     {
         var ds = new DataService("puputietokanta.db");
         //ds.CreateDB();
-		ds.LuoKanta();
+		//ds.LuoKanta();
         
 //        var people = ds.GetPersons ();
 //        ToConsole (people);

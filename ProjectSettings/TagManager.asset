@@ -12,6 +12,7 @@ TagManager:
   - bonuslife
   - GameManager
   - snowflake
+  - starstext
   layers:
   - Default
   - TransparentFX

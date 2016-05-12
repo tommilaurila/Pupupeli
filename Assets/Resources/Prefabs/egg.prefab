@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  isEatable: 1
 --- !u!212 &21204238
 SpriteRenderer:
   m_ObjectHideFlags: 1

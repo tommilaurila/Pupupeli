@@ -48,30 +48,17 @@ public class taso01manager : MonoBehaviour {
 
 	private Taso taso;
 	private GameObject hyvis;
+	private GameObject pahis;
 
-	void Awake() {
-		loadTaso ();
-	}
 
 	void loadTaso() {
-		DataService ds = new DataService ("puputietokanta.db");
-		taso = ds.GetTaso (2);
-		Debug.Log("Ladattiin taso " + taso.ToString());
-		string hyvisNimi = "Prefabs/";
+		taso = gm.getCurrentLevel();
 
-		switch (taso.Id) {
-		case 1:
-			hyvisNimi += "egg";
-			break;
-		case 2:
-			hyvisNimi += "snowflake";
-			break;
-		default:
-			break;
-		}
-
-		Debug.Log ("hyvisnimi on " + hyvisNimi);
+		string hyvisNimi = "Prefabs/" + taso.Hyvis;
 		hyvis = (GameObject)Resources.Load (hyvisNimi, typeof(GameObject));
+
+		string pahisNimi = "Prefabs/" + taso.Pahis;
+		pahis = (GameObject)Resources.Load (pahisNimi, typeof(GameObject));
 	}
 
 
@@ -197,7 +184,7 @@ public class taso01manager : MonoBehaviour {
 		for (int i = 0; i < howMany; i++) {
 			float xValue = Random.Range (topLeft.x + coneMargin, topRight.x - coneMargin);
 
-			GameObject newCone = (GameObject)Instantiate (pinecone, 
+			GameObject newCone = (GameObject)Instantiate (pahis, 
 				new Vector3 (xValue, topLeft.y + coneMargin, 0f), 
 				Quaternion.identity); 
 
@@ -280,6 +267,7 @@ public class taso01manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		loadTaso ();
 
 		replaybtn.SetActive (false);
 		menubtn.SetActive (false);

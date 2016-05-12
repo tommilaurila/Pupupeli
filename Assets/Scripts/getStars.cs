@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class getStars : MonoBehaviour {
 
-	public GameManager gm = GameManager.instance;
+	public GameManager gm;
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<GUIText> ().text = gm.getTotalStars ().ToString ();
+		GetComponent<Text> ().text = gm.getTotalStars ().ToString ();
 	}
 
 }

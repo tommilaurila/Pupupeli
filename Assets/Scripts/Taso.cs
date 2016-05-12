@@ -4,8 +4,8 @@ public class Taso  {
 
 	[PrimaryKey, AutoIncrement]
 	public int Id { get; set; }
-	public int Hyvis { get; set; }
-	public int Pahis { get; set; }
+	public string Hyvis { get; set; }
+	public string Pahis { get; set; }
 	public int Tahdet { get; set; }
 	public int Lukittu { get; set; }
 

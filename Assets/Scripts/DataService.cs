@@ -59,7 +59,7 @@ public class DataService  {
 
 	}
 
-	
+/*	
 	public void LuoKanta() {
 	_connection.DropTable<Putoava> ();
 	_connection.CreateTable<Putoava> ();
@@ -116,14 +116,14 @@ public class DataService  {
 	});
 	}
 
-
+*/
 	public Taso GetTaso(int nro) {
 		return _connection.Table<Taso> ().Where (x => x.Id == nro).First();
 	}
 
 	//TODO: tähtiä lisäytyy aivan liikaa!!
 	public int addTotalStars(int stars) {
-		Asetukset oldSettings = _connection.Table<Asetukset> ().First();
+	Asetukset oldSettings = _connection.Table<Asetukset> ().First();
 
 		oldSettings.Tahtisaldo += stars;
 		// palauttaa muutettujen rivien lukumäärän

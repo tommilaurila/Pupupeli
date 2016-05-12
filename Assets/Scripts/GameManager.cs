@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 	public int gameState;
 
-	int currentLevel;
+	static Taso currentLevel;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -45,13 +45,14 @@ public class GameManager : MonoBehaviour
 	}
 
 
-	public int getCurrentLevel() {
+	public Taso getCurrentLevel() {
 		return currentLevel;
 	}
 
 
 	public void StartLevel(int level) {
-		currentLevel = level;
+		currentLevel = ds.GetTaso(level);
+		level = 1;
 		SceneManager.LoadScene (level);
 	}
 

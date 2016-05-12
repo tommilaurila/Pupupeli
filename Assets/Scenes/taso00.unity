@@ -470,7 +470,7 @@ GameObject:
   - 114: {fileID: 416977503}
   m_Layer: 5
   m_Name: StarsText
-  m_TagString: Untagged
+  m_TagString: starstext
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,7 +542,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd64654cebaf6e84aa184762f86f865f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
+  gm: {fileID: 11456934, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
+  me: {fileID: 416977499}
 --- !u!1 &485517834
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 151c81b9ff8e17b42a97572f1535bc73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 134184, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
+  gm: {fileID: 11456934, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
 --- !u!1 &650723890
 GameObject:
   m_ObjectHideFlags: 0
