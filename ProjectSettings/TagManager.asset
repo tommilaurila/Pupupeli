@@ -13,6 +13,9 @@ TagManager:
   - GameManager
   - snowflake
   - starstext
+  - canvas
+  - hyvis
+  - pahis
   layers:
   - Default
   - TransparentFX

@@ -47,18 +47,21 @@ public class taso01manager : MonoBehaviour {
 	private ArrayList starsList = new ArrayList();
 
 	private Taso taso;
-	private GameObject hyvis;
-	private GameObject pahis;
+	public GameObject hyvis;
+	public GameObject pahis;
 
 
 	void loadTaso() {
 		taso = gm.getCurrentLevel();
 
-		string hyvisNimi = "Prefabs/" + taso.Hyvis;
-		hyvis = (GameObject)Resources.Load (hyvisNimi, typeof(GameObject));
+		hyvis.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load("hyvikset/" + taso.Hyvis, typeof(Sprite));
+		pahis.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load("pahikset/" + taso.Pahis, typeof(Sprite));
 
-		string pahisNimi = "Prefabs/" + taso.Pahis;
-		pahis = (GameObject)Resources.Load (pahisNimi, typeof(GameObject));
+//		string hyvisNimi = "Prefabs/" + taso.Hyvis;
+//		hyvis = (GameObject)Resources.Load (hyvisNimi, typeof(GameObject));
+//
+//		string pahisNimi = "Prefabs/" + taso.Pahis;
+//		pahis = (GameObject)Resources.Load (pahisNimi, typeof(GameObject));
 	}
 
 
