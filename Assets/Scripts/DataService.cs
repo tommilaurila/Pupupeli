@@ -121,7 +121,7 @@ public class DataService  {
 		return _connection.Table<Taso> ().Where (x => x.Id == nro).First();
 	}
 
-	//TODO: tähtiä lisäytyy aivan liikaa!!
+
 	public int addTotalStars(int stars) {
 	Asetukset oldSettings = _connection.Table<Asetukset> ().First();
 
@@ -133,7 +133,6 @@ public class DataService  {
 
 	public int getTotalStars() {
 		Asetukset a = _connection.Table<Asetukset> ().Where (x => x.Id == 1).First();
-		Debug.Log ("Tähtisaldo on " + a.ToString());
 		return a.Tahtisaldo;		
 	}
 

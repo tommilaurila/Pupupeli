@@ -62,7 +62,7 @@ public class movement : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 		// jos muna törmäsi maahan
-		if (coll.gameObject.CompareTag ("pinecone")) {
+		if (coll.gameObject.CompareTag ("pahis")) {
 			hitConeTime = Time.time;
 			GetComponent<SpriteRenderer> ().sprite = playerSprites [3];
 			coll.gameObject.SetActive (false);

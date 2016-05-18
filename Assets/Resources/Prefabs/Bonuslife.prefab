@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21278250}
   - 50: {fileID: 5090488}
   - 61: {fileID: 6133916}
-  - 114: {fileID: 11431116}
+  - 114: {fileID: 11459760}
   m_Layer: 0
   m_Name: Bonuslife
   m_TagString: bonuslife
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.187763, y: 1.3399944, z: 0}
+  m_LocalPosition: {x: 0.01, y: 3.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,10 +59,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0071251392, y: -0.0142502785}
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.68}
---- !u!114 &11431116
+  m_Size: {x: 0.67874885, y: 0.6514995}
+--- !u!114 &11459760
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -70,9 +70,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 196058}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31096a2a10377ed42a0d40f185da5737, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e5181425ed42f24a8eb368970b0e0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 134184, guid: 7a0e23b1ff9aea443a534615e80581a9, type: 2}
+  isEatable: 1
 --- !u!212 &21278250
 SpriteRenderer:
   m_ObjectHideFlags: 1

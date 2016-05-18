@@ -23,11 +23,16 @@ public class Loader : MonoBehaviour {
 
 	void GenerateLevelButtons() {
 		Vector3 centerScreen = Camera.main.ScreenToWorldPoint (new Vector3(Camera.main.pixelWidth/2, Camera.main.pixelHeight/2, 0f));
+		int levelButtonText = 1;
 
-		Button b = (Button)Instantiate (levelButton, centerScreen, Quaternion.identity);
-		b.transform.SetParent (canvas.transform, false);
+		//TODO: vaihda buttonien tekstit ja vaihda startleveli skriptiin
+		for (float i = -96f; i < 99f; i += 96f) {
+			Vector3 levelButtonPosition = new Vector3 (centerScreen.x + i, centerScreen.y, centerScreen.z);
+			Button b = (Button)Instantiate (levelButton, levelButtonPosition, Quaternion.identity);
+			//b.GetComponent<Text> ().text = levelButtonText.ToString ();
+			levelButtonText++;
 
-
-		Debug.Log ("lisättiin nappi");
+			b.transform.SetParent (canvas.transform, false);
+		}
 	}
 }
