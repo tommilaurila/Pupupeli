@@ -1,5 +1,6 @@
 ﻿using SQLite4Unity3d;
 using UnityEngine;
+using System;
 #if !UNITY_EDITOR
 using System.Collections;
 using System.IO;
@@ -122,18 +123,50 @@ public class DataService  {
 	}
 
 
-	public int addTotalStars(int stars) {
+	public IEnumerable<Taso> GetTasot() {
+		return _connection.Table<Taso> ();
+	}
+
+
+	public void addTotalStars(int stars) {
 	Asetukset oldSettings = _connection.Table<Asetukset> ().First();
 
 		oldSettings.Tahtisaldo += stars;
 		// palauttaa muutettujen rivien lukumäärän
-		return _connection.Update(oldSettings);
+		_connection.Update(oldSettings);
+	}
+
+
+	public void updateLevelHighScore(int level, int stars) {
+		//lisätään kerättyjen tähtien kokonaismäärään
+		addTotalStars (stars);
+
+		// päivitetään kenttäkohtainen highscore, jos on saatu enemmän tähtiä kuin ennen
+		Taso levelToOpen = _connection.Table<Taso> ().Where (x => x.Id == level).First();
+		// jos vanha high score on pienempi, päivitetään uusi
+		if (levelToOpen.Tahdet < stars) {
+			levelToOpen.Tahdet = stars;
+			_connection.Update (levelToOpen);
+		}
 	}
 
 
 	public int getTotalStars() {
 		Asetukset a = _connection.Table<Asetukset> ().Where (x => x.Id == 1).First();
 		return a.Tahtisaldo;		
+	}
+
+
+	public void unlockLevel(int level) {
+	try {
+		Taso levelToOpen = _connection.Table<Taso> ().Where (x => x.Id == level).First();
+		
+		levelToOpen.Lukittu = 0;
+		_connection.Update (levelToOpen);
+	}
+	catch (InvalidOperationException ioe) {
+			Debug.Log ("An InvalidOperationException happened when trying to unlock next level");
+		}
 	}
 
 /*

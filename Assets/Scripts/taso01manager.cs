@@ -139,14 +139,14 @@ public class taso01manager : MonoBehaviour {
 			CancelInvoke ("dropObject");
 
 			gm.gameState = 5;
-			//gameState = 5;
 
 			giveStars (lives);
 
 			collected_stars += lives;
 			starsText.text = collected_stars.ToString ();
-			//saveStars ();
-			gm.addTotalStars(lives);
+
+			gm.addStars(lives);
+			gm.UnlockNextLevel ();
 
 			replaybtn.SetActive (true);
 			menubtn.SetActive (true);

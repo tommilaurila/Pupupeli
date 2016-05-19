@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-	public void addTotalStars(int stars) {
-		ds.addTotalStars (stars);
+	public void addStars(int stars) {
+		ds.updateLevelHighScore (currentLevel.Id, stars);
 	}
 
 
@@ -50,10 +50,21 @@ public class GameManager : MonoBehaviour
 	}
 
 
+	public IEnumerable getAllLevels() {
+		return ds.GetTasot ();
+	}
+
+
 	public void StartLevel(int level) {
 		currentLevel = ds.GetTaso(level);
-		level = 1;
-		SceneManager.LoadScene (level);
+		Debug.Log ("startataan leveli " + currentLevel);
+		SceneManager.LoadScene (1); //level);
+	}
+
+
+	public void UnlockNextLevel() {
+		Debug.Log ("GM: nyt on taso " + currentLevel + " Avataan seuraava");
+		ds.unlockLevel (currentLevel.Id +1);
 	}
 
 
