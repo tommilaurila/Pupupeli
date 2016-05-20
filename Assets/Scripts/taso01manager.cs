@@ -38,12 +38,7 @@ public class taso01manager : MonoBehaviour {
 	private int collected_stars = 0;
 
 	private ArrayList lifeList = new ArrayList();
-	//private ArrayList eggList = new ArrayList();
-	//private ArrayList coneList = new ArrayList();
-	//private ArrayList bonusLifeList = new ArrayList();
-
 	private ArrayList objectsList = new ArrayList();
-
 	private ArrayList starsList = new ArrayList();
 
 	private Taso taso;
@@ -51,17 +46,37 @@ public class taso01manager : MonoBehaviour {
 	public GameObject pahis;
 
 
+	// Use this for initialization
+	void Start () {
+		loadTaso ();
+
+		replaybtn.SetActive (false);
+		menubtn.SetActive (false);
+		nextbtn.SetActive (false);
+
+		starSprites = Resources.LoadAll<Sprite> ("stars");
+
+		// luetaan ennestään kerätyt tähdet muistista
+		readStars ();
+
+		gm.gameState = 2;
+		addLives (lives);
+		addEggsToList(taso.Hyvis_lkm * 2);
+		addEggcups (taso.Hyvis_lkm);
+
+		addConesToList (taso.Pahis_lkm);
+		addBonusLivesToList (taso.Elama_lkm);
+
+		reshuffle (objectsList);
+		InvokeRepeating ("dropObject", 3f, 3f);
+	}
+
+
 	void loadTaso() {
 		taso = gm.getCurrentLevel();
 
 		hyvis.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load("hyvikset/" + taso.Hyvis, typeof(Sprite));
 		pahis.GetComponent<SpriteRenderer> ().sprite = (Sprite)Resources.Load("pahikset/" + taso.Pahis, typeof(Sprite));
-
-//		string hyvisNimi = "Prefabs/" + taso.Hyvis;
-//		hyvis = (GameObject)Resources.Load (hyvisNimi, typeof(GameObject));
-//
-//		string pahisNimi = "Prefabs/" + taso.Pahis;
-//		pahis = (GameObject)Resources.Load (pahisNimi, typeof(GameObject));
 	}
 
 
@@ -268,32 +283,7 @@ public class taso01manager : MonoBehaviour {
 		}
 	}
 
-	// Use this for initialization
-	void Start () {
-		loadTaso ();
 
-		replaybtn.SetActive (false);
-		menubtn.SetActive (false);
-		nextbtn.SetActive (false);
-
-		starSprites = Resources.LoadAll<Sprite> ("stars");
-
-		// luetaan ennestään kerätyt tähdet muistista
-		readStars ();
-
-		// peli käynnissä
-		//gameState = 2;
-		gm.gameState = 2;
-		addLives (lives);
-		addEggsToList(6);
-		addEggcups (eggsToCatch);
-
-		addConesToList (3);
-		addBonusLivesToList (2);
-
-		reshuffle (objectsList);
-		InvokeRepeating ("dropObject", 3f, 3f);
-	}
 
 
 	void readStars() {
