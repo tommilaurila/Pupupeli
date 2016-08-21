@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class taso01manager : MonoBehaviour {
 
-	public GameObject egg;
+	//public GameObject egg;
 	public GameObject bonuslife;
 	public GameObject life;
 	public GameObject eggcup;
@@ -66,6 +66,8 @@ public class taso01manager : MonoBehaviour {
 
 		addConesToList (taso.Pahis_lkm);
 		addBonusLivesToList (taso.Elama_lkm);
+
+		eggsToCatch = taso.Hyvis_lkm;
 
 		reshuffle (objectsList);
 		InvokeRepeating ("dropObject", 3f, 3f);
