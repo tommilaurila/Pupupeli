@@ -48,6 +48,9 @@ public class taso01manager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (gm == null)
+			SceneManager.LoadScene ("taso00");
+		
 		loadTaso ();
 
 		replaybtn.SetActive (false);
@@ -306,11 +309,17 @@ public class taso01manager : MonoBehaviour {
 	}
 
 
-	public void StartLevel(int level) {
-		SceneManager.LoadScene (level);
+	public void NextLevel() {
+		gm.StartNextLevel ();
 	}
 
 
+	public void ReturnToLevelSelect() {
+		gm.StartLevelSelectScreen ();
+	}
 
 
+	public void ReplayThisLevel() {
+		gm.ReplayCurrentLevel ();
+	}
 }

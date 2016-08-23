@@ -57,8 +57,28 @@ public class GameManager : MonoBehaviour
 
 	public void StartLevel(int level) {
 		currentLevel = ds.GetTaso(level);
-		Debug.Log ("startataan leveli " + currentLevel);
-		SceneManager.LoadScene (1); //level);
+
+		if (currentLevel.Lukittu == 1) {
+			Debug.Log ("leveli " + currentLevel.Id + " on lukittu");
+		} else {
+			Debug.Log ("startataan leveli: " + currentLevel);
+			SceneManager.LoadScene (currentLevel.Taso_tyyppi);
+		}
+	}
+
+
+	public void StartLevelSelectScreen() {
+		SceneManager.LoadScene ("taso00");
+	}
+
+
+	public void ReplayCurrentLevel() {
+		StartLevel(currentLevel.Id);
+	}
+
+
+	public void StartNextLevel() {
+		StartLevel (currentLevel.Id + 1);
 	}
 
 
